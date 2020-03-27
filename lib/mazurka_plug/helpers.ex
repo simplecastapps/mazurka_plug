@@ -58,7 +58,9 @@ defmodule Mazurka.Plug.Helpers do
 
   # TODO make this header configurable
   def handle_invalidation(%{private: %{mazurka_invalidations: invalidations}} = conn) do
-    Enum.reduce(invalidations, conn, &(Conn.put_resp_header(&2, "x-invalidates", &1)))
+    #Enum.reduce(invalidations, conn, &(Conn.put_resp_header(&2, "x-invalidates", &1)))
+    Enum.reduce(invalidations, conn, &(%{conn | resp_headers: [{"x-invalidates", &1} | conn.resp_headers]}
+    # Conn.put_resp_header(conn, "x-invalidates", Enum.join(invalidations, ","))
   end
   def handle_invalidation(conn) do
     conn
