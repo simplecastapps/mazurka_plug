@@ -15,7 +15,7 @@ defmodule Mazurka.Plug.Mixfile do
 
   def application do
     [
-      applications: [:logger]
+      extra_applications: [:logger]
     ]
   end
 
