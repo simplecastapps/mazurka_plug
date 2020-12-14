@@ -26,7 +26,7 @@ defmodule Mazurka.Plug.Mixfile do
       {:html_builder, github: "simplecastapps/html_builder"},
       {:mazurka, github: "simplecastapps/mazurka"},
       {:plug, ">= 0.0.0"},
-      {:poison, ">= 2.2.0"}
+      {:poison, ">= 4.0"}
     ]
   end
 end

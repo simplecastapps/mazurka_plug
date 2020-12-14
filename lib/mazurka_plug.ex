@@ -49,7 +49,7 @@ defmodule Mazurka.Plug do
   end
 
   def serialize({"application", "json", _}, body) do
-    Poison.encode_to_iodata!(body)
+    Poison.encode!(body)
   end
   def serialize({"application", "xml", _}, body) do
     body
