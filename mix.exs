@@ -15,13 +15,15 @@ defmodule Mazurka.Plug.Mixfile do
 
   def application do
     [
-      applications: [:logger]
+      extra_applications: [:logger]
     ]
   end
 
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
+      # Used in mazurka, referenced here via macro
+      {:mimetype_parser, "~> 0.1.0"},
       {:fugue, ">= 0.1.0"},
       {:html_builder, github: "simplecastapps/html_builder"},
       {:mazurka, github: "simplecastapps/mazurka"},

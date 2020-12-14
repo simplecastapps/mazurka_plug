@@ -111,24 +111,28 @@ defimpl Mazurka.Conn, for: Plug.Conn do
 end
 
 defimpl Plug.Exception, for: Mazurka.UnacceptableContentTypeException do
+  def actions(_), do: []
   def status(_) do
     406
   end
 end
 
 defimpl Plug.Exception, for: Mazurka.ConditionException do
+  def actions(_), do: []
   def status(_) do
     401
   end
 end
 
 defimpl Plug.Exception, for: Mazurka.ValidationException do
+  def actions(_), do: []
   def status(_) do
     400
   end
 end
 
 defimpl Plug.Exception, for: [Mazurka.MissingParametersException,Mazurka.MissingRouterException] do
+  def actions(_), do: []
   def status(_) do
     500
   end
