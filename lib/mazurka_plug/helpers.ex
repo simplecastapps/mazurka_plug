@@ -18,9 +18,16 @@ defmodule Mazurka.Plug.Helpers do
   end
 
   def get_params(conn) do
-    %{params: params,
+    %{
+      # sent in body, perhaps in json %{"foo" => "bar"}
       body_params: b_params,
-      query_params: q_params} = conn = Plug.Conn.fetch_query_params(conn)
+
+      # sent in query eg. ?foo=bar
+      query_params: q_params,
+
+      # all params, aka both of the above
+      params: params
+    } = conn = Plug.Conn.fetch_query_params(conn)
 
     b_params = case b_params do
                  %Plug.Conn.Unfetched{} ->
@@ -30,14 +37,8 @@ defmodule Mazurka.Plug.Helpers do
                end
 
     input = Map.merge(q_params, b_params)
-    params = :maps.fold(fn(k, v, acc) ->
-      case Map.fetch(input, k) do
-        {:ok, ^v} ->
-          Map.delete(acc, k)
-        _ ->
-          acc
-      end
-    end, params, params)
+    # these params are set by concerto via the matching route path /podcasts/@podcast
+    params = conn.private[:concerto_params] || %{}
 
     {params, input, conn}
   end
