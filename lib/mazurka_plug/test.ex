@@ -8,7 +8,7 @@ defmodule Mazurka.Plug.Test do
 
       action do
         resource = var!(conn).private.mazurka_affordance_test_resource
-        link_to(resource, Params.get(), Input.get())
+        link_to(resource, Params.all_unaltered(), Input.all_unaltered())
       end
     end
   end

@@ -6,6 +6,8 @@ defmodule MazurkaPlugTest do
     use Mazurka.Resource
     use Mazurka.Plug
 
+    version 1
+
     param foo
     input bar
 
@@ -109,6 +111,6 @@ defmodule MazurkaPlugTest do
   end
 
   defp put_params(conn, params) do
-    %{conn | params: params}
+    %{conn | private: %{concerto_params: params}}
   end
 end
